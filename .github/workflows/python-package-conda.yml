@@ -20,6 +20,9 @@ jobs:
     - name: Install dependencies
       run: |
         conda env update --file environment.yml --name base
+        # Install scrot for GUI tests
+        sudo apt-get update
+        sudo apt-get install scrot
     - name: Lint with flake8
       run: |
         conda install flake8
