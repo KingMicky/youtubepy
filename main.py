@@ -7,7 +7,7 @@ def startDownload():
         ytlink = link.get() 
         yt = YouTube(ytlink)  
         video_stream = yt.streams.get_highest_resolution()
-        download_folder = 'C:\Users\kachi\Documents\Devs\youtubepy\main.py'
+        download_folder = 'C:\Users\kachi\Documents\Devs\youtubepy'
         video_stream.download(download_folder)
         print(f'Download complete. Saved to: {download_folder}')
     except Exception as e:

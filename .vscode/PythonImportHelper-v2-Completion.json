@@ -38,7 +38,7 @@
         "kind": 2,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "def startDownload():\n    try:\n        ytlink = link.get() \n        yt = YouTube(ytlink)  \n        video_stream = yt.streams.get_highest_resolution()\n        download_folder = 'C:\\Users\\kachi\\Documents\\Devs\\youtubepy\\main.py'\n        video_stream.download(download_folder)\n        print(f'Download complete. Saved to: {download_folder}')\n    except Exception as e:\n        print(f'An error occurred: {str(e)}')",
+        "peekOfCode": "def startDownload():\n    try:\n        ytlink = link.get() \n        yt = YouTube(ytlink)  \n        video_stream = yt.streams.get_highest_resolution()\n        download_folder = 'C:\\Users\\kachi\\Documents\\Devs\\youtubepy'\n        video_stream.download(download_folder)\n        print(f'Download complete. Saved to: {download_folder}')\n    except Exception as e:\n        print(f'An error occurred: {str(e)}')",
         "detail": "main",
         "documentation": {}
     },
