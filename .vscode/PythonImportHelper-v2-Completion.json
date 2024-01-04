@@ -1,5 +1,32 @@
 [
     {
+        "label": "pytest",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pytest",
+        "description": "pytest",
+        "detail": "pytest",
+        "documentation": {}
+    },
+    {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "pyautogui",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pyautogui",
+        "description": "pyautogui",
+        "detail": "pyautogui",
+        "documentation": {}
+    },
+    {
         "label": "tkinter",
         "kind": 6,
         "isExtraImport": true,
@@ -31,6 +58,33 @@
         "description": "pytube",
         "isExtraImport": true,
         "detail": "pytube",
+        "documentation": {}
+    },
+    {
+        "label": "setup_and_teardown",
+        "kind": 2,
+        "importPath": "gui_test",
+        "description": "gui_test",
+        "peekOfCode": "def setup_and_teardown():\n    # Perform setup steps if needed\n    yield\n    # Perform teardown steps if needed\ndef test_gui_functionality(setup_and_teardown):\n    # Simulate GUI interactions using PyAutoGUI\n    # For example, click a button or input text into a field\n    pyautogui.click(x=100, y=100, button=\"left\")\n    # Wait for the GUI to respond\n    time.sleep(2)",
+        "detail": "gui_test",
+        "documentation": {}
+    },
+    {
+        "label": "test_gui_functionality",
+        "kind": 2,
+        "importPath": "gui_test",
+        "description": "gui_test",
+        "peekOfCode": "def test_gui_functionality(setup_and_teardown):\n    # Simulate GUI interactions using PyAutoGUI\n    # For example, click a button or input text into a field\n    pyautogui.click(x=100, y=100, button=\"left\")\n    # Wait for the GUI to respond\n    time.sleep(2)\n    # Capture a screenshot\n    screenshot = pyautogui.screenshot()\n    # Verify something in the screenshot\n    assert verify_something(screenshot), \"GUI functionality test failed\"",
+        "detail": "gui_test",
+        "documentation": {}
+    },
+    {
+        "label": "verify_something",
+        "kind": 2,
+        "importPath": "gui_test",
+        "description": "gui_test",
+        "peekOfCode": "def verify_something(screenshot):\n    # Implement your verification logic here\n    # For example, check if a specific element is present in the screenshot\n    return True",
+        "detail": "gui_test",
         "documentation": {}
     },
     {
