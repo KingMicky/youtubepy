@@ -2,15 +2,21 @@ import pytest
 import time
 import pyautogui
 
+from pyvirtualdisplay import Display
+
+
+with Display():
+    import pyautogui
+
+
 @pytest.fixture
 def setup_and_teardown():
-    # Perform setup steps if needed
+    
     yield
-    # Perform teardown steps if needed
+    
 
 def test_gui_functionality(setup_and_teardown):
-    # Simulate GUI interactions using PyAutoGUI
-    # For example, click a button or input text into a field
+    
     pyautogui.click(x=100, y=100, button="left")
     
     # Wait for the GUI to respond

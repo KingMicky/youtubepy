@@ -27,6 +27,14 @@
         "documentation": {}
     },
     {
+        "label": "Display",
+        "importPath": "pyvirtualdisplay",
+        "description": "pyvirtualdisplay",
+        "isExtraImport": true,
+        "detail": "pyvirtualdisplay",
+        "documentation": {}
+    },
+    {
         "label": "tkinter",
         "kind": 6,
         "isExtraImport": true,
@@ -65,7 +73,7 @@
         "kind": 2,
         "importPath": "gui_test",
         "description": "gui_test",
-        "peekOfCode": "def setup_and_teardown():\n    # Perform setup steps if needed\n    yield\n    # Perform teardown steps if needed\ndef test_gui_functionality(setup_and_teardown):\n    # Simulate GUI interactions using PyAutoGUI\n    # For example, click a button or input text into a field\n    pyautogui.click(x=100, y=100, button=\"left\")\n    # Wait for the GUI to respond\n    time.sleep(2)",
+        "peekOfCode": "def setup_and_teardown():\n    yield\ndef test_gui_functionality(setup_and_teardown):\n    pyautogui.click(x=100, y=100, button=\"left\")\n    # Wait for the GUI to respond\n    time.sleep(2)\n    # Capture a screenshot\n    screenshot = pyautogui.screenshot()\n    # Verify something in the screenshot\n    assert verify_something(screenshot), \"GUI functionality test failed\"",
         "detail": "gui_test",
         "documentation": {}
     },
@@ -74,7 +82,7 @@
         "kind": 2,
         "importPath": "gui_test",
         "description": "gui_test",
-        "peekOfCode": "def test_gui_functionality(setup_and_teardown):\n    # Simulate GUI interactions using PyAutoGUI\n    # For example, click a button or input text into a field\n    pyautogui.click(x=100, y=100, button=\"left\")\n    # Wait for the GUI to respond\n    time.sleep(2)\n    # Capture a screenshot\n    screenshot = pyautogui.screenshot()\n    # Verify something in the screenshot\n    assert verify_something(screenshot), \"GUI functionality test failed\"",
+        "peekOfCode": "def test_gui_functionality(setup_and_teardown):\n    pyautogui.click(x=100, y=100, button=\"left\")\n    # Wait for the GUI to respond\n    time.sleep(2)\n    # Capture a screenshot\n    screenshot = pyautogui.screenshot()\n    # Verify something in the screenshot\n    assert verify_something(screenshot), \"GUI functionality test failed\"\n# Add more tests as needed\ndef verify_something(screenshot):",
         "detail": "gui_test",
         "documentation": {}
     },
