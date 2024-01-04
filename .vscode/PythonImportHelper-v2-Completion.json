@@ -82,7 +82,7 @@
         "kind": 2,
         "importPath": "gui_test",
         "description": "gui_test",
-        "peekOfCode": "def setup_and_teardown():\n    yield\ndef test_gui_functionality(setup_and_teardown):\n    pyautogui.click(x=100, y=100, button=\"left\")\n    # Wait for the GUI to respond\n    time.sleep(2)\n    # Capture a screenshot\n    screenshot = pyautogui.screenshot()\n    # Verify something in the screenshot\n    assert verify_something(screenshot), \"GUI functionality test failed\"",
+        "peekOfCode": "def setup_and_teardown():\n    yield\ndef test_gui_functionality(setup_and_teardown):\n    with Display():\n        pyautogui.click(x=100, y=100, button=\"left\")\n        # Wait for the GUI to respond\n        time.sleep(2)\n        # Capture a screenshot\n        screenshot = pyautogui.screenshot()\n        # Verify something in the screenshot",
         "detail": "gui_test",
         "documentation": {}
     },
@@ -91,7 +91,7 @@
         "kind": 2,
         "importPath": "gui_test",
         "description": "gui_test",
-        "peekOfCode": "def test_gui_functionality(setup_and_teardown):\n    pyautogui.click(x=100, y=100, button=\"left\")\n    # Wait for the GUI to respond\n    time.sleep(2)\n    # Capture a screenshot\n    screenshot = pyautogui.screenshot()\n    # Verify something in the screenshot\n    assert verify_something(screenshot), \"GUI functionality test failed\"\n# Add more tests as needed\ndef verify_something(screenshot):",
+        "peekOfCode": "def test_gui_functionality(setup_and_teardown):\n    with Display():\n        pyautogui.click(x=100, y=100, button=\"left\")\n        # Wait for the GUI to respond\n        time.sleep(2)\n        # Capture a screenshot\n        screenshot = pyautogui.screenshot()\n        # Verify something in the screenshot\n        assert verify_something(screenshot), \"GUI functionality test failed\"\n# Add more tests as needed",
         "detail": "gui_test",
         "documentation": {}
     },
@@ -109,7 +109,7 @@
         "kind": 5,
         "importPath": "gui_test",
         "description": "gui_test",
-        "peekOfCode": "os.environ['PYAUTOGUI_NOSCREEN'] = '1'\nwith Display():\n    import pyautogui\n@pytest.fixture\ndef setup_and_teardown():\n    yield\ndef test_gui_functionality(setup_and_teardown):\n    pyautogui.click(x=100, y=100, button=\"left\")\n    # Wait for the GUI to respond\n    time.sleep(2)",
+        "peekOfCode": "os.environ['PYAUTOGUI_NOSCREEN'] = '1'\n@pytest.fixture\ndef setup_and_teardown():\n    yield\ndef test_gui_functionality(setup_and_teardown):\n    with Display():\n        pyautogui.click(x=100, y=100, button=\"left\")\n        # Wait for the GUI to respond\n        time.sleep(2)\n        # Capture a screenshot",
         "detail": "gui_test",
         "documentation": {}
     },
