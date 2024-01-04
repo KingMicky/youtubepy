@@ -10,3 +10,4 @@ dependencies:
   - matplotlib
   - pytest
   - flake8
+  - pyautogui
