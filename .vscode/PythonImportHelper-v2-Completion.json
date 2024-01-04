@@ -1,0 +1,144 @@
+[
+    {
+        "label": "tkinter",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "tkinter",
+        "description": "tkinter",
+        "detail": "tkinter",
+        "documentation": {}
+    },
+    {
+        "label": "customtkinter",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "customtkinter",
+        "description": "customtkinter",
+        "detail": "customtkinter",
+        "documentation": {}
+    },
+    {
+        "label": "YouTube",
+        "importPath": "pytube",
+        "description": "pytube",
+        "isExtraImport": true,
+        "detail": "pytube",
+        "documentation": {}
+    },
+    {
+        "label": "YouTube",
+        "importPath": "pytube",
+        "description": "pytube",
+        "isExtraImport": true,
+        "detail": "pytube",
+        "documentation": {}
+    },
+    {
+        "label": "startDownload",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def startDownload():\n    try:\n        ytlink = link.get() \n        yt = YouTube(ytlink)  \n        video_stream = yt.streams.get_highest_resolution()\n        download_folder = 'C:\\Users\\kachi\\Documents\\Devs\\youtubepy\\main.py'\n        video_stream.download(download_folder)\n        print(f'Download complete. Saved to: {download_folder}')\n    except Exception as e:\n        print(f'An error occurred: {str(e)}')",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "startDownload",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def startDownload():\n    try:\n        ytlink = link.get()  \n        yt = YouTube(ytlink)  \n        video_stream = yt.streams.get_highest_resolution()\n        download_folder = '../downloads'\n        video_stream.download(download_folder)\n        print(f'Download complete. Saved to: {download_folder}')\n    except Exception as e:\n        print(f'An error occurred: {str(e)}')",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "app = customtkinter.CTk()\napp.geometry('720x480')\napp.title('YouTube Downloader')\ntitle = customtkinter.CTkLabel(app, text='Insert a Youtube Link', font=('Arial', 20))\ntitle.pack(padx=10, pady=10)\nvideo_url = tk.StringVar()\nlink = customtkinter.CTkEntry(app, width=350, height=40, textvariable=video_url)\nlink.pack(padx=10, pady=10)\ndownload = customtkinter.CTkButton(app, text='Download', command=startDownload)\ndownload.pack()",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "title",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "title = customtkinter.CTkLabel(app, text='Insert a Youtube Link', font=('Arial', 20))\ntitle.pack(padx=10, pady=10)\nvideo_url = tk.StringVar()\nlink = customtkinter.CTkEntry(app, width=350, height=40, textvariable=video_url)\nlink.pack(padx=10, pady=10)\ndownload = customtkinter.CTkButton(app, text='Download', command=startDownload)\ndownload.pack()\napp.mainloop()\nimport tkinter as tk\nimport customtkinter",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "video_url",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "video_url = tk.StringVar()\nlink = customtkinter.CTkEntry(app, width=350, height=40, textvariable=video_url)\nlink.pack(padx=10, pady=10)\ndownload = customtkinter.CTkButton(app, text='Download', command=startDownload)\ndownload.pack()\napp.mainloop()\nimport tkinter as tk\nimport customtkinter\nfrom pytube import YouTube\ndef startDownload():",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "link",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "link = customtkinter.CTkEntry(app, width=350, height=40, textvariable=video_url)\nlink.pack(padx=10, pady=10)\ndownload = customtkinter.CTkButton(app, text='Download', command=startDownload)\ndownload.pack()\napp.mainloop()\nimport tkinter as tk\nimport customtkinter\nfrom pytube import YouTube\ndef startDownload():\n    try:",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "download",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "download = customtkinter.CTkButton(app, text='Download', command=startDownload)\ndownload.pack()\napp.mainloop()\nimport tkinter as tk\nimport customtkinter\nfrom pytube import YouTube\ndef startDownload():\n    try:\n        ytlink = link.get()  \n        yt = YouTube(ytlink)  ",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "app = customtkinter.CTk()\napp.geometry('720x480')\napp.title('YouTube Downloader')\ntitle = customtkinter.CTkLabel(app, text='Insert a Youtube Link', font=('Arial', 20))\ntitle.pack(padx=10, pady=10)\nvideo_url = tk.StringVar()\nlink = customtkinter.CTkEntry(app, width=350, height=40, textvariable=video_url)\nlink.pack(padx=10, pady=10)\ndownload = customtkinter.CTkButton(app, text='Download', command=startDownload)\ndownload.pack()",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "title",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "title = customtkinter.CTkLabel(app, text='Insert a Youtube Link', font=('Arial', 20))\ntitle.pack(padx=10, pady=10)\nvideo_url = tk.StringVar()\nlink = customtkinter.CTkEntry(app, width=350, height=40, textvariable=video_url)\nlink.pack(padx=10, pady=10)\ndownload = customtkinter.CTkButton(app, text='Download', command=startDownload)\ndownload.pack()\napp.mainloop()",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "video_url",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "video_url = tk.StringVar()\nlink = customtkinter.CTkEntry(app, width=350, height=40, textvariable=video_url)\nlink.pack(padx=10, pady=10)\ndownload = customtkinter.CTkButton(app, text='Download', command=startDownload)\ndownload.pack()\napp.mainloop()",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "link",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "link = customtkinter.CTkEntry(app, width=350, height=40, textvariable=video_url)\nlink.pack(padx=10, pady=10)\ndownload = customtkinter.CTkButton(app, text='Download', command=startDownload)\ndownload.pack()\napp.mainloop()",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "download",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "download = customtkinter.CTkButton(app, text='Download', command=startDownload)\ndownload.pack()\napp.mainloop()",
+        "detail": "main",
+        "documentation": {}
+    }
+]
