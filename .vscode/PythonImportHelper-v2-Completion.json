@@ -70,11 +70,11 @@
         "documentation": {}
     },
     {
-        "label": "YouTube",
-        "importPath": "pytube",
-        "description": "pytube",
+        "label": "Thread",
+        "importPath": "threading",
+        "description": "threading",
         "isExtraImport": true,
-        "detail": "pytube",
+        "detail": "threading",
         "documentation": {}
     },
     {
@@ -118,16 +118,43 @@
         "kind": 2,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "def startDownload():\n    try:\n        ytlink = link.get() \n        yt = YouTube(ytlink)  \n        video_stream = yt.streams.get_highest_resolution()\n        download_folder = r'C:\\Users\\kachi\\Documents\\Devs\\youtubepy'\n        video_stream.download(download_folder)\n        print(f'Download complete. Saved to: {download_folder}')\n    except Exception as e:\n        print(f'An error occurred: {str(e)}')",
+        "peekOfCode": "def startDownload():\n    # Disable the download button to prevent multiple clicks\n    download.configure(state=tk.DISABLED)\n    # Start the download in a separate thread\n    download_thread = Thread(target=downloadInBackground)\n    download_thread.start()\ndef downloadInBackground():\n    try:\n        ytlink = link.get()\n        yt = YouTube(ytlink, on_progress_callback=on_progress)",
         "detail": "main",
         "documentation": {}
     },
     {
-        "label": "startDownload",
+        "label": "downloadInBackground",
         "kind": 2,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "def startDownload():\n    try:\n        ytlink = link.get()  \n        yt = YouTube(ytlink)  \n        video_stream = yt.streams.get_highest_resolution()\n        download_folder = '../downloads'\n        video_stream.download(download_folder)\n        print(f'Download complete. Saved to: {download_folder}')\n    except Exception as e:\n        print(f'An error occurred: {str(e)}')",
+        "peekOfCode": "def downloadInBackground():\n    try:\n        ytlink = link.get()\n        yt = YouTube(ytlink, on_progress_callback=on_progress)\n        video_stream = yt.streams.get_highest_resolution()\n        download_folder = r'C:\\Users\\kachi\\Documents\\Devs\\youtubepy'\n        video_stream.download(download_folder)\n        print(f'Download complete. Saved to: {download_folder}')\n        # Update the UI in the main thread\n        app.after(100, updateUI, yt.title, 'white', 'Downloaded')",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "updateUI",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def updateUI(label_text, text_color, finish_text):\n    title.configure(text=label_text, text_color=text_color)\n    finishLabel.configure(text=finish_text)\ndef on_progress(stream, chunk, bytes_remaining):\n    total_size = stream.filesize\n    bytes_downloaded = total_size - bytes_remaining\n    percentage_of_completion = bytes_downloaded / total_size * 100\n    per = str(int(percentage_of_completion))\n    # Update progress in the main thread\n    app.after(100, updateProgressUI, per, float(percentage_of_completion) / 100)",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "on_progress",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def on_progress(stream, chunk, bytes_remaining):\n    total_size = stream.filesize\n    bytes_downloaded = total_size - bytes_remaining\n    percentage_of_completion = bytes_downloaded / total_size * 100\n    per = str(int(percentage_of_completion))\n    # Update progress in the main thread\n    app.after(100, updateProgressUI, per, float(percentage_of_completion) / 100)\ndef updateProgressUI(percentage, progress):\n    pPerentage.configure(text=percentage + '%')\n    progressBar.set(progress)",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "updateProgressUI",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def updateProgressUI(percentage, progress):\n    pPerentage.configure(text=percentage + '%')\n    progressBar.set(progress)\ncustomtkinter.set_appearance_mode('system')\ncustomtkinter.set_default_color_theme('green')\napp = customtkinter.CTk()\napp.geometry('720x480')\napp.title('YouTube Downloader')\ntitle = customtkinter.CTkLabel(app, text='Insert a Youtube Link', font=('Arial', 20))\ntitle.pack(padx=10, pady=10)",
         "detail": "main",
         "documentation": {}
     },
@@ -136,7 +163,7 @@
         "kind": 5,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "app = customtkinter.CTk()\napp.geometry('720x480')\napp.title('YouTube Downloader')\ntitle = customtkinter.CTkLabel(app, text='Insert a Youtube Link', font=('Arial', 20))\ntitle.pack(padx=10, pady=10)\nvideo_url = tk.StringVar()\nlink = customtkinter.CTkEntry(app, width=350, height=40, textvariable=video_url)\nlink.pack(padx=10, pady=10)\ndownload = customtkinter.CTkButton(app, text='Download', command=startDownload)\ndownload.pack()",
+        "peekOfCode": "app = customtkinter.CTk()\napp.geometry('720x480')\napp.title('YouTube Downloader')\ntitle = customtkinter.CTkLabel(app, text='Insert a Youtube Link', font=('Arial', 20))\ntitle.pack(padx=10, pady=10)\nvideo_url = tk.StringVar()\nlink = customtkinter.CTkEntry(app, width=350, height=40, textvariable=video_url)\nlink.pack(padx=10, pady=10)\nfinishLabel = customtkinter.CTkLabel(app, text=\"\")\nfinishLabel.pack()",
         "detail": "main",
         "documentation": {}
     },
@@ -145,7 +172,7 @@
         "kind": 5,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "title = customtkinter.CTkLabel(app, text='Insert a Youtube Link', font=('Arial', 20))\ntitle.pack(padx=10, pady=10)\nvideo_url = tk.StringVar()\nlink = customtkinter.CTkEntry(app, width=350, height=40, textvariable=video_url)\nlink.pack(padx=10, pady=10)\ndownload = customtkinter.CTkButton(app, text='Download', command=startDownload)\ndownload.pack()\napp.mainloop()\nimport tkinter as tk\nimport customtkinter",
+        "peekOfCode": "title = customtkinter.CTkLabel(app, text='Insert a Youtube Link', font=('Arial', 20))\ntitle.pack(padx=10, pady=10)\nvideo_url = tk.StringVar()\nlink = customtkinter.CTkEntry(app, width=350, height=40, textvariable=video_url)\nlink.pack(padx=10, pady=10)\nfinishLabel = customtkinter.CTkLabel(app, text=\"\")\nfinishLabel.pack()\npPerentage = customtkinter.CTkLabel(app, text=\"0%\")\npPerentage.pack()\nprogressBar = customtkinter.CTkProgressBar(app, width=400)",
         "detail": "main",
         "documentation": {}
     },
@@ -154,7 +181,7 @@
         "kind": 5,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "video_url = tk.StringVar()\nlink = customtkinter.CTkEntry(app, width=350, height=40, textvariable=video_url)\nlink.pack(padx=10, pady=10)\ndownload = customtkinter.CTkButton(app, text='Download', command=startDownload)\ndownload.pack()\napp.mainloop()\nimport tkinter as tk\nimport customtkinter\nfrom pytube import YouTube\ndef startDownload():",
+        "peekOfCode": "video_url = tk.StringVar()\nlink = customtkinter.CTkEntry(app, width=350, height=40, textvariable=video_url)\nlink.pack(padx=10, pady=10)\nfinishLabel = customtkinter.CTkLabel(app, text=\"\")\nfinishLabel.pack()\npPerentage = customtkinter.CTkLabel(app, text=\"0%\")\npPerentage.pack()\nprogressBar = customtkinter.CTkProgressBar(app, width=400)\nprogressBar.set(0)\nprogressBar.pack(padx=10, pady=10)",
         "detail": "main",
         "documentation": {}
     },
@@ -163,7 +190,34 @@
         "kind": 5,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "link = customtkinter.CTkEntry(app, width=350, height=40, textvariable=video_url)\nlink.pack(padx=10, pady=10)\ndownload = customtkinter.CTkButton(app, text='Download', command=startDownload)\ndownload.pack()\napp.mainloop()\nimport tkinter as tk\nimport customtkinter\nfrom pytube import YouTube\ndef startDownload():\n    try:",
+        "peekOfCode": "link = customtkinter.CTkEntry(app, width=350, height=40, textvariable=video_url)\nlink.pack(padx=10, pady=10)\nfinishLabel = customtkinter.CTkLabel(app, text=\"\")\nfinishLabel.pack()\npPerentage = customtkinter.CTkLabel(app, text=\"0%\")\npPerentage.pack()\nprogressBar = customtkinter.CTkProgressBar(app, width=400)\nprogressBar.set(0)\nprogressBar.pack(padx=10, pady=10)\ndownload = customtkinter.CTkButton(app, text='Download', command=startDownload)",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "finishLabel",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "finishLabel = customtkinter.CTkLabel(app, text=\"\")\nfinishLabel.pack()\npPerentage = customtkinter.CTkLabel(app, text=\"0%\")\npPerentage.pack()\nprogressBar = customtkinter.CTkProgressBar(app, width=400)\nprogressBar.set(0)\nprogressBar.pack(padx=10, pady=10)\ndownload = customtkinter.CTkButton(app, text='Download', command=startDownload)\ndownload.pack(padx=10, pady=10)\napp.mainloop()",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "pPerentage",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "pPerentage = customtkinter.CTkLabel(app, text=\"0%\")\npPerentage.pack()\nprogressBar = customtkinter.CTkProgressBar(app, width=400)\nprogressBar.set(0)\nprogressBar.pack(padx=10, pady=10)\ndownload = customtkinter.CTkButton(app, text='Download', command=startDownload)\ndownload.pack(padx=10, pady=10)\napp.mainloop()",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "progressBar",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "progressBar = customtkinter.CTkProgressBar(app, width=400)\nprogressBar.set(0)\nprogressBar.pack(padx=10, pady=10)\ndownload = customtkinter.CTkButton(app, text='Download', command=startDownload)\ndownload.pack(padx=10, pady=10)\napp.mainloop()",
         "detail": "main",
         "documentation": {}
     },
@@ -172,52 +226,7 @@
         "kind": 5,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "download = customtkinter.CTkButton(app, text='Download', command=startDownload)\ndownload.pack()\napp.mainloop()\nimport tkinter as tk\nimport customtkinter\nfrom pytube import YouTube\ndef startDownload():\n    try:\n        ytlink = link.get()  \n        yt = YouTube(ytlink)  ",
-        "detail": "main",
-        "documentation": {}
-    },
-    {
-        "label": "app",
-        "kind": 5,
-        "importPath": "main",
-        "description": "main",
-        "peekOfCode": "app = customtkinter.CTk()\napp.geometry('720x480')\napp.title('YouTube Downloader')\ntitle = customtkinter.CTkLabel(app, text='Insert a Youtube Link', font=('Arial', 20))\ntitle.pack(padx=10, pady=10)\nvideo_url = tk.StringVar()\nlink = customtkinter.CTkEntry(app, width=350, height=40, textvariable=video_url)\nlink.pack(padx=10, pady=10)\ndownload = customtkinter.CTkButton(app, text='Download', command=startDownload)\ndownload.pack()",
-        "detail": "main",
-        "documentation": {}
-    },
-    {
-        "label": "title",
-        "kind": 5,
-        "importPath": "main",
-        "description": "main",
-        "peekOfCode": "title = customtkinter.CTkLabel(app, text='Insert a Youtube Link', font=('Arial', 20))\ntitle.pack(padx=10, pady=10)\nvideo_url = tk.StringVar()\nlink = customtkinter.CTkEntry(app, width=350, height=40, textvariable=video_url)\nlink.pack(padx=10, pady=10)\ndownload = customtkinter.CTkButton(app, text='Download', command=startDownload)\ndownload.pack()\napp.mainloop()",
-        "detail": "main",
-        "documentation": {}
-    },
-    {
-        "label": "video_url",
-        "kind": 5,
-        "importPath": "main",
-        "description": "main",
-        "peekOfCode": "video_url = tk.StringVar()\nlink = customtkinter.CTkEntry(app, width=350, height=40, textvariable=video_url)\nlink.pack(padx=10, pady=10)\ndownload = customtkinter.CTkButton(app, text='Download', command=startDownload)\ndownload.pack()\napp.mainloop()",
-        "detail": "main",
-        "documentation": {}
-    },
-    {
-        "label": "link",
-        "kind": 5,
-        "importPath": "main",
-        "description": "main",
-        "peekOfCode": "link = customtkinter.CTkEntry(app, width=350, height=40, textvariable=video_url)\nlink.pack(padx=10, pady=10)\ndownload = customtkinter.CTkButton(app, text='Download', command=startDownload)\ndownload.pack()\napp.mainloop()",
-        "detail": "main",
-        "documentation": {}
-    },
-    {
-        "label": "download",
-        "kind": 5,
-        "importPath": "main",
-        "description": "main",
-        "peekOfCode": "download = customtkinter.CTkButton(app, text='Download', command=startDownload)\ndownload.pack()\napp.mainloop()",
+        "peekOfCode": "download = customtkinter.CTkButton(app, text='Download', command=startDownload)\ndownload.pack(padx=10, pady=10)\napp.mainloop()",
         "detail": "main",
         "documentation": {}
     }
