@@ -4,6 +4,8 @@ import pyautogui
 
 from pyvirtualdisplay import Display
 
+import os
+os.environ['PYAUTOGUI_NOSCREEN'] = '1'
 
 with Display():
     import pyautogui

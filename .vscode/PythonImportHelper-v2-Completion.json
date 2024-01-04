@@ -35,6 +35,15 @@
         "documentation": {}
     },
     {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
         "label": "tkinter",
         "kind": 6,
         "isExtraImport": true,
@@ -92,6 +101,15 @@
         "importPath": "gui_test",
         "description": "gui_test",
         "peekOfCode": "def verify_something(screenshot):\n    # Implement your verification logic here\n    # For example, check if a specific element is present in the screenshot\n    return True",
+        "detail": "gui_test",
+        "documentation": {}
+    },
+    {
+        "label": "os.environ['PYAUTOGUI_NOSCREEN']",
+        "kind": 5,
+        "importPath": "gui_test",
+        "description": "gui_test",
+        "peekOfCode": "os.environ['PYAUTOGUI_NOSCREEN'] = '1'\nwith Display():\n    import pyautogui\n@pytest.fixture\ndef setup_and_teardown():\n    yield\ndef test_gui_functionality(setup_and_teardown):\n    pyautogui.click(x=100, y=100, button=\"left\")\n    # Wait for the GUI to respond\n    time.sleep(2)",
         "detail": "gui_test",
         "documentation": {}
     },
